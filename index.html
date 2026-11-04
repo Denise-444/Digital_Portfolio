@@ -7,11 +7,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#14163A; --bg2:#1C1F4A; --ink:#F1F3FF; --muted:#AEB4E6; --brand:#8F93FF; --accent:#2fe2ca;
+  --bg:#17251D;
+  --bg2:#21352A;
+  --ink:#F3F0E6;
+  --muted:#C1CBBE;
+  --brand:#A3B18A;
+  --accent:#D8C3A5;
   --nav-h:64px;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h);background:var(--bg);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h);background:var(--bg);color-scheme:light}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;font-size:1.05rem;line-height:1.6}
 h1,h2,h3{font-family:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;line-height:1.1;margin:0}
 section{min-height:100vh;min-height:100dvh;display:flex;align-items:center;padding:calc(var(--nav-h) + 2rem) 6vw 3rem}
@@ -23,16 +28,57 @@ h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;margin-bottom:1rem}
 p{max-width:52ch;color:var(--muted);margin:.5rem 0 0}
 
 /* Tab bar */
-.tabs{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:10;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:0 4vw;background:var(--bg2);border-bottom:3px solid var(--ink);overflow-x:auto}
+.tabs{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:10;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:0 4vw;background:rgba(33,53,42,.94);backdrop-filter:blur(10px);border-bottom:2px solid rgba(243,240,230,.35);overflow-x:auto}
 .tabs a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;padding:.45rem 1rem;border-radius:99px;border:3px solid transparent}
 .tabs a:hover{border-color:var(--ink)}
-.tabs a.active{background:var(--accent);color:#1C1F4A;border-color:var(--ink)}
+.tabs a.active{background:var(--accent);color:#26372C;border-color:var(--accent)}
 .tabs a:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
 
 /* Pictures */
 .pic{aspect-ratio:4/5;width:100%;max-width:380px;justify-self:center;border-radius:28px;border:3px solid var(--ink);background:var(--accent);box-shadow:10px 10px 0 var(--brand);overflow:hidden}
 .pic.wide{aspect-ratio:4/3;max-width:420px}
 .pic img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Background box behind the cut-out photo */
+.pic.cutout{
+  position:relative;
+  background:linear-gradient(170deg, rgba(163,177,138,.28), rgba(216,195,165,.22) 55%, rgba(255,255,255,.08));
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:28px;
+  box-shadow:0 18px 50px rgba(163,177,138,.16);
+  overflow:hidden;
+}
+
+/* Soft drifting clouds of light */
+.pic.cutout::before,
+.pic.cutout::after{
+  content:"";position:absolute;inset:-25%;pointer-events:none;filter:blur(28px);
+}
+.pic.cutout::before{
+  background:
+    radial-gradient(circle at 25% 30%, rgba(243,240,230,.24), transparent 38%),
+    radial-gradient(circle at 75% 65%, rgba(163,177,138,.38), transparent 42%);
+  animation:driftA 14s ease-in-out infinite alternate;
+}
+.pic.cutout::after{
+  background:
+    radial-gradient(circle at 70% 25%, rgba(216,195,165,.42), transparent 40%),
+    radial-gradient(circle at 30% 80%, rgba(243,240,230,.18), transparent 36%);
+  animation:driftB 18s ease-in-out infinite alternate;
+}
+.pic.cutout img{position:relative;z-index:1;object-fit:contain;object-position:bottom}
+
+@keyframes driftA{
+  from{transform:translate(-6%,4%) scale(1)}
+  to{transform:translate(6%,-5%) scale(1.12)}
+}
+@keyframes driftB{
+  from{transform:translate(5%,-4%) scale(1.1)}
+  to{transform:translate(-6%,6%) scale(1)}
+}
+@media (prefers-reduced-motion:reduce){
+  .pic.cutout::before,.pic.cutout::after{animation:none}
+}
 
 /* Skills */
 .skill-group{margin-top:1.4rem}
@@ -46,9 +92,9 @@ p{max-width:52ch;color:var(--muted);margin:.5rem 0 0}
 /* Projects */
 .projects{display:flex;flex-direction:column;gap:5rem;width:100%}
 .project{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;width:100%;max-width:1100px;margin:0 auto}
-.tag{display:inline-block;background:var(--accent);color:#1C1F4A;font-weight:700;font-size:.9rem;padding:.15rem .7rem;border-radius:99px;margin-bottom:.6rem}
+.tag{display:inline-block;background:var(--accent);color:#26372C;font-weight:700;font-size:.9rem;padding:.15rem .7rem;border-radius:99px;margin-bottom:.6rem}
 
-/* Contact (plain text, not clickable) */
+/* Contact */
 .contact-list{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:.9rem}
 .contact-item{display:flex;align-items:center;gap:.9rem;font-weight:600;padding:.8rem 1.1rem;border:3px solid var(--ink);border-radius:16px;background:var(--bg);max-width:460px}
 .ic{width:38px;height:38px;border-radius:12px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}
@@ -82,8 +128,8 @@ footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.9rem}
       <h1>Denise A. Panoy</h1>
       <div class="sub">Digital Portfolio</div>
     </div>
-    <div class="pic">
-      <img src="fah.jpg" alt="Denise Picture">
+    <div class="pic cutout">
+      <img src="fah-removebg-preview.png" alt="Denise Picture">
     </div>
   </div>
 </section>
@@ -97,8 +143,8 @@ footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.9rem}
       <p>I'm also learning networking with Cisco, so I'm building skills in how devices connect, how networks are set up, and how everything stays running behind the scenes. I like having both sides: the creative side and the technical side.</p>
       <p>Right now I'm focused on learning new tools, improving my work with every project, and finding chances to grow and work with a team.</p>
     </div>
-    <div class="pic">
-      <img src="fah.jpg" alt="Denise Picture">
+    <div class="pic cutout">
+      <img src="fah-removebg-preview.png" alt="Denise Picture">
     </div>
   </div>
 </section>
@@ -106,7 +152,6 @@ footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.9rem}
 <!-- SKILLS -->
 <section id="skills">
   <div class="wrap">
-    <!-- LEFT: your text -->
     <div>
       <h2>Key skills</h2>
 
@@ -127,7 +172,7 @@ footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.9rem}
 
       <div class="skill-group">
         <h3>Office tools</h3>
-        <p>Microsoft Words, Excel, Google Docs, Powerpoint</p>
+        <p>Microsoft Word, Excel, PowerPoint, Google Docs</p>
       </div>
     </div>
 
@@ -137,7 +182,7 @@ footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.9rem}
       <div class="skill"><div class="logo"><img src="adobe_express.png" alt=""></div>Adobe Express</div>
       <div class="skill"><div class="logo"><img src="figma.png" alt=""></div>Figma</div>
       <div class="skill"><div class="logo"><img src="cisco.png" alt=""></div>Cisco</div>
-      <div class="skill"><div class="logo"><img src="powerpoint.webp" alt=""></div>Logo Design</div>
+      <div class="skill"><div class="logo"><img src="powerpoint.webp" alt=""></div>PowerPoint</div>
       <div class="skill"><div class="logo"><img src="excel.webp" alt=""></div>Excel</div>
     </div>
   </div>
@@ -155,19 +200,19 @@ footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.9rem}
       </div>
       <div class="pic wide"><img src="GH (1).png" alt="Project One"></div>
     </div>
+
     <div class="project">
       <div>
-       <span class="tag">Website</span>
+        <span class="tag">Website</span>
         <h3>Oh My Gracious</h3>
         <p>Oh My Gracious is a website for booking nail appointments, with AR so customers can try nail designs before they book. I contributed as a frontend developer, helping build the screens and layout into the working interface.</p>
       </div>
       <div class="pic wide"><img src="OMG.png" alt="Project Two"></div>
     </div>
-    <div class="project">
   </div>
 </section>
 
-<!-- CONTACT (all plain text, nothing is clickable) -->
+<!-- CONTACT -->
 <section id="connect">
   <div class="wrap" style="grid-template-columns:1fr">
     <div>
@@ -182,7 +227,7 @@ footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.9rem}
   </div>
 </section>
 
-<footer>© Denise A. Panoy · Digital Portfolio</footer>
+<footer>© Denise Panoy · Digital Portfolio</footer>
 
 <script>
 // Highlights the tab of the section you are currently viewing.
