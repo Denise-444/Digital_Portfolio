@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Digital Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF3FF; --bg2:#FFFFFF; --ink:#1C1F4A; --muted:#555A86; --brand:#3B3FD8; --accent:#2fe2ca;
+  --nav-h:64px;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#14163A; --bg2:#1C1F4A; --ink:#F1F3FF; --muted:#AEB4E6; --brand:#8F93FF;}
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;font-size:1.05rem;line-height:1.6}
+h1,h2,h3{font-family:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;line-height:1.1;margin:0}
+section{min-height:100vh;min-height:100dvh;display:flex;align-items:center;padding:calc(var(--nav-h) + 2rem) 6vw 3rem}
+section:nth-of-type(even){background:var(--bg2)}
+.wrap{width:100%;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center}
+h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:800}
+h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;margin-bottom:1rem}
+.sub{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:clamp(1.2rem,3vw,1.7rem);font-weight:500;color:var(--brand);margin-top:.8rem}
+p{max-width:52ch;color:var(--muted);margin:.5rem 0 0}
+
+/* Tab bar */
+.tabs{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:10;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:0 4vw;background:var(--bg2);border-bottom:3px solid var(--ink);overflow-x:auto}
+.tabs a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;padding:.45rem 1rem;border-radius:99px;border:3px solid transparent}
+.tabs a:hover{border-color:var(--ink)}
+.tabs a.active{background:var(--accent);color:#1C1F4A;border-color:var(--ink)}
+.tabs a:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+
+/* Pictures */
+.pic{aspect-ratio:4/5;width:100%;max-width:380px;justify-self:center;border-radius:28px;border:3px solid var(--ink);background:var(--accent);box-shadow:10px 10px 0 var(--brand);overflow:hidden}
+.pic.wide{aspect-ratio:4/3;max-width:420px}
+.pic img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Skills */
+.skill-group{margin-top:1.4rem}
+.skill-group h3{font-size:1.4rem;color:var(--ink)}
+.skill-group p{margin-top:.3rem}
+.logos{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;justify-self:center;width:100%;max-width:400px}
+.skill{text-align:center;font-weight:600;font-size:.95rem}
+.logo{width:100%;aspect-ratio:1;margin-bottom:.4rem;border-radius:20px;border:3px solid var(--ink);background:#fff;padding:14%;display:flex;align-items:center;justify-content:center}
+.logo img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+
+/* Projects */
+.projects{display:flex;flex-direction:column;gap:5rem;width:100%}
+.project{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;width:100%;max-width:1100px;margin:0 auto}
+.tag{display:inline-block;background:var(--accent);color:#1C1F4A;font-weight:700;font-size:.9rem;padding:.15rem .7rem;border-radius:99px;margin-bottom:.6rem}
+
+/* Contact (plain text, not clickable) */
+.contact-list{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:.9rem}
+.contact-item{display:flex;align-items:center;gap:.9rem;font-weight:600;padding:.8rem 1.1rem;border:3px solid var(--ink);border-radius:16px;background:var(--bg);max-width:460px}
+.ic{width:38px;height:38px;border-radius:12px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}
+footer{text-align:center;padding:1.5rem;color:var(--muted);font-size:.9rem}
+
+@media (max-width:760px){
+  .wrap,.project{grid-template-columns:1fr;gap:2rem}
+  .pic{max-width:300px}
+  .tabs{justify-content:space-between;gap:0;padding:0 2vw}
+  .tabs a{padding:.4rem .55rem;font-size:.85rem}
+  section{padding:calc(var(--nav-h) + 1.5rem) 6vw 3rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- TAB BAR -->
+<nav class="tabs" aria-label="Sections">
+  <a href="#home" class="active">Home</a>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#connect">Connect</a>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+  <div class="wrap">
+    <div>
+      <h1>Denise A. Panoy</h1>
+      <div class="sub">Digital Portfolio</div>
+    </div>
+    <div class="pic">
+      <img src="" alt="Denise Picture">
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div>
+      <h2>About me</h2>
+      <p>Hi, I'm a student who enjoys creating designs that look good and are easy to use. I mostly work on graphic design and UI/UX, and I like turning a simple idea into something people can actually enjoy using.</p>
+      <p>I'm also learning networking with Cisco, so I'm building skills in how devices connect, how networks are set up, and how everything stays running behind the scenes. I like having both sides: the creative side and the technical side.</p>
+      <p>Right now I'm focused on learning new tools, improving my work with every project, and finding chances to grow and work with a team.</p>
+    </div>
+    <div class="pic">
+      <img src="images/me.jpg" alt="Denise Picture">
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <!-- LEFT: your text -->
+    <div>
+      <h2>Key skills</h2>
+
+      <div class="skill-group">
+        <h3>Graphic Design</h3>
+        <p>Canva, Adobe Express</p>
+      </div>
+
+      <div class="skill-group">
+        <h3>UI/UX Design</h3>
+        <p>Figma</p>
+      </div>
+
+      <div class="skill-group">
+        <h3>Networking</h3>
+        <p>Cisco and Cisco Packet Tracer</p>
+      </div>
+
+      <div class="skill-group">
+        <h3>Office tools</h3>
+        <p>Microsoft Words, Excel, Google Docs, Powerpoint</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: your logos -->
+    <div class="logos">
+      <div class="skill"><div class="logo"><img src="download.webp" alt=""></div>Canva</div>
+      <div class="skill"><div class="logo"><img src="adobe_express.png" alt=""></div>Adobe Express</div>
+      <div class="skill"><div class="logo"><img src="figma.png" alt=""></div>Figma</div>
+      <div class="skill"><div class="logo"><img src="cisco.png" alt=""></div>Cisco</div>
+      <div class="skill"><div class="logo"><img src="powerpoint.webp" alt=""></div>Logo Design</div>
+      <div class="skill"><div class="logo"><img src="excel.webp" alt=""></div>Excel</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects">
+    <div class="project">
+      <div>
+        <h2>Projects</h2>
+        <span class="tag">School Project</span>
+        <h3>GoodHaul</h3>
+        <p>GoodHaul was a school project where I worked as the designer. Help creating the logo, app screens, posters, and layouts. and focused on keeping everything clean, consistent, and easy to understand.</p>
+      </div>
+      <div class="pic wide"><img src="GH (1).png" alt="Project One"></div>
+    </div>
+    <div class="project">
+      <div>
+        <span class="tag">Capstone Project</span>
+        <h3>Oh My Gracious</h3>
+        <p>Oh My Gracious was our capstone project, where I worked as the frontend developer. I designed the screens and layout and then built them into the actual interface, so I got to handle the project from idea to working pages.</p>
+      </div>
+      <div class="pic wide"><img src="OMG.png" alt="Project Two"></div>
+    </div>
+    <div class="project">
+  </div>
+</section>
+
+<!-- CONTACT (all plain text, nothing is clickable) -->
+<section id="connect">
+  <div class="wrap" style="grid-template-columns:1fr">
+    <div>
+      <h2>Connect with me</h2>
+      <p>Want to work together? Reach me here.</p>
+      <ul class="contact-list">
+        <li><div class="contact-item"><span class="ic">@</span>denisepanoy@gmail.com</div></li>
+        <li><div class="contact-item"><span class="ic">#</span>+63 927 114 9019</div></li>
+        <li><div class="contact-item"><span class="ic">Be</span>Jobstreet: Denise Panoy</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>© Denise A. Panoy · Digital Portfolio</footer>
+
+<script>
+// Highlights the tab of the section you are currently viewing.
+var links = document.querySelectorAll('.tabs a');
+var sections = document.querySelectorAll('section');
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      links.forEach(function(a){
+        a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px'});
+sections.forEach(function(s){observer.observe(s)});
+</script>
+</body>
+</html>
